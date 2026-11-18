@@ -1,0 +1,155 @@
+
+> awad-release-rollback-starter@2.0.0 migrate:image
+> node deploy/migrate.js v2
+
+applied  002_expiry
+(node:1) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+> awad-release-rollback-starter@2.0.0 release
+> node deploy/release.js v2
+
+[2026-11-18T13:47:44.760Z] ========================================
+[2026-11-18T13:47:44.762Z] Starting release for image linkbox:v2
+[2026-11-18T13:47:44.762Z] ========================================
+[2026-11-18T13:47:44.816Z] Current state: active=[blue] (100%), target idle slot=[green]
+[2026-11-18T13:47:44.817Z] Starting linkbox:v2 in service [green] via docker compose...
+ Container linkbox-green-1  Creating
+ Container linkbox-green-1  Created
+ Container linkbox-green-1  Starting
+ Container linkbox-green-1  Started
+[2026-11-18T13:47:45.361Z] Waiting for linkbox-green-1 to report healthy in Docker (max 60s)...
+[2026-11-18T13:47:50.909Z] linkbox-green-1 reports HEALTHY!
+[2026-11-18T13:47:50.917Z] Applying canary stage: target [green]=20%, active [blue]=80% for 12s...
+[2026-11-18T13:47:51.928Z] [Canary 20% @ 1s/12s] green: 5 reqs, 0 errors (0.0%)
+[2026-11-18T13:47:52.931Z] [Canary 20% @ 2s/12s] green: 13 reqs, 0 errors (0.0%)
+[2026-11-18T13:47:53.935Z] [Canary 20% @ 3s/12s] green: 19 reqs, 0 errors (0.0%)
+[2026-11-18T13:47:54.938Z] [Canary 20% @ 4s/12s] green: 29 reqs, 0 errors (0.0%)
+[2026-11-18T13:47:55.941Z] [Canary 20% @ 5s/12s] green: 37 reqs, 0 errors (0.0%)
+[2026-11-18T13:47:56.944Z] [Canary 20% @ 6s/12s] green: 43 reqs, 0 errors (0.0%)
+[2026-11-18T13:47:57.946Z] [Canary 20% @ 7s/12s] green: 54 reqs, 0 errors (0.0%)
+[2026-11-18T13:47:58.947Z] [Canary 20% @ 8s/12s] green: 66 reqs, 0 errors (0.0%)
+[2026-11-18T13:47:59.950Z] [Canary 20% @ 9s/12s] green: 74 reqs, 0 errors (0.0%)
+[2026-11-18T13:48:00.952Z] [Canary 20% @ 10s/12s] green: 80 reqs, 0 errors (0.0%)
+[2026-11-18T13:48:01.954Z] [Canary 20% @ 11s/12s] green: 84 reqs, 0 errors (0.0%)
+[2026-11-18T13:48:02.956Z] [Canary 20% @ 12s/12s] green: 94 reqs, 0 errors (0.0%)
+[2026-11-18T13:48:02.956Z] Canary stage [20%] completed successfully with 0 gate violations.
+[2026-11-18T13:48:02.956Z] Applying canary stage: target [green]=50%, active [blue]=50% for 10s...
+[2026-11-18T13:48:03.963Z] [Canary 50% @ 1s/10s] green: 13 reqs, 0 errors (0.0%)
+[2026-11-18T13:48:04.965Z] [Canary 50% @ 2s/10s] green: 32 reqs, 0 errors (0.0%)
+[2026-11-18T13:48:05.967Z] [Canary 50% @ 3s/10s] green: 52 reqs, 0 errors (0.0%)
+[2026-11-18T13:48:06.968Z] [Canary 50% @ 4s/10s] green: 74 reqs, 0 errors (0.0%)
+[2026-11-18T13:48:07.969Z] [Canary 50% @ 5s/10s] green: 94 reqs, 0 errors (0.0%)
+[2026-11-18T13:48:08.971Z] [Canary 50% @ 6s/10s] green: 115 reqs, 0 errors (0.0%)
+[2026-11-18T13:48:09.972Z] [Canary 50% @ 7s/10s] green: 130 reqs, 0 errors (0.0%)
+[2026-11-18T13:48:10.973Z] [Canary 50% @ 8s/10s] green: 150 reqs, 0 errors (0.0%)
+[2026-11-18T13:48:11.975Z] [Canary 50% @ 9s/10s] green: 169 reqs, 0 errors (0.0%)
+[2026-11-18T13:48:12.977Z] [Canary 50% @ 10s/10s] green: 183 reqs, 0 errors (0.0%)
+[2026-11-18T13:48:12.977Z] Canary stage [50%] completed successfully with 0 gate violations.
+[2026-11-18T13:48:12.977Z] Promoting [green] to 100% traffic...
+[2026-11-18T13:48:12.986Z] Final router state: blue=0%, green=100%
+[2026-11-18T13:48:12.986Z] Release of linkbox:v2 completed successfully! Old slot [blue] is left running.
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    49    0    32  100    17   4255   2260 --:--:-- --:--:-- --:--:--  7000
+HTTP/1.1 200 OK
+x-app-version: 2.0.0
+content-type: application/json
+date: Wed, 18 Nov 2026 13:48:18 GMT
+connection: close
+transfer-encoding: chunked
+x-slot: green
+
+{"name":"expiry","enabled":true}
+> awad-release-rollback-starter@2.0.0 rollback
+> node deploy/rollback.js
+
+[2026-11-18T13:48:35.920Z] Starting rollback process...
+[2026-11-18T13:48:35.964Z] Current router weights: blue=0%, green=100%
+[2026-11-18T13:48:35.964Z] Routing 100% traffic back to safe slot [blue] and 0% to [green]...
+[2026-11-18T13:48:35.975Z] Confirmed router state: blue=100%, green=0%
+[2026-11-18T13:48:35.975Z] Draining in-flight requests on green (1s)...
+[2026-11-18T13:48:36.976Z] Stopping container linkbox-green-1...
+linkbox-green-1
+[2026-11-18T13:48:37.158Z] Container linkbox-green-1 stopped successfully.
+[2026-11-18T13:48:37.158Z] Rollback completed successfully. 100% traffic is now served by [blue].
+
+> awad-release-rollback-starter@2.0.0 release
+> node deploy/release.js v2
+
+[2026-11-18T13:48:50.821Z] ========================================
+[2026-11-18T13:48:50.823Z] Starting release for image linkbox:v2
+[2026-11-18T13:48:50.823Z] ========================================
+[2026-11-18T13:48:50.880Z] Current state: active=[blue] (100%), target idle slot=[green]
+[2026-11-18T13:48:50.880Z] Starting linkbox:v2 in service [green] via docker compose...
+ Container linkbox-green-1  Created
+ Container linkbox-green-1  Starting
+ Container linkbox-green-1  Started
+[2026-11-18T13:48:51.305Z] Waiting for linkbox-green-1 to report healthy in Docker (max 60s)...
+[2026-11-18T13:48:56.860Z] linkbox-green-1 reports HEALTHY!
+[2026-11-18T13:48:56.868Z] Applying canary stage: target [green]=20%, active [blue]=80% for 12s...
+[2026-11-18T13:48:57.884Z] [Canary 20% @ 1s/12s] green: 7 reqs, 0 errors (0.0%)
+[2026-11-18T13:48:58.886Z] [Canary 20% @ 2s/12s] green: 16 reqs, 0 errors (0.0%)
+[2026-11-18T13:48:59.889Z] [Canary 20% @ 3s/12s] green: 22 reqs, 0 errors (0.0%)
+[2026-11-18T13:49:00.894Z] [Canary 20% @ 4s/12s] green: 36 reqs, 0 errors (0.0%)
+[2026-11-18T13:49:01.896Z] [Canary 20% @ 5s/12s] green: 48 reqs, 0 errors (0.0%)
+[2026-11-18T13:49:02.898Z] [Canary 20% @ 6s/12s] green: 55 reqs, 0 errors (0.0%)
+[2026-11-18T13:49:03.901Z] [Canary 20% @ 7s/12s] green: 68 reqs, 0 errors (0.0%)
+[2026-11-18T13:49:04.903Z] [Canary 20% @ 8s/12s] green: 75 reqs, 0 errors (0.0%)
+[2026-11-18T13:49:05.910Z] [Canary 20% @ 9s/12s] green: 85 reqs, 0 errors (0.0%)
+[2026-11-18T13:49:06.912Z] [Canary 20% @ 10s/12s] green: 100 reqs, 0 errors (0.0%)
+[2026-11-18T13:49:07.914Z] [Canary 20% @ 11s/12s] green: 108 reqs, 0 errors (0.0%)
+[2026-11-18T13:49:08.916Z] [Canary 20% @ 12s/12s] green: 121 reqs, 0 errors (0.0%)
+[2026-11-18T13:49:08.917Z] Canary stage [20%] completed successfully with 0 gate violations.
+[2026-11-18T13:49:08.917Z] Applying canary stage: target [green]=50%, active [blue]=50% for 10s...
+[2026-11-18T13:49:09.926Z] [Canary 50% @ 1s/10s] green: 21 reqs, 0 errors (0.0%)
+[2026-11-18T13:49:10.928Z] [Canary 50% @ 2s/10s] green: 44 reqs, 0 errors (0.0%)
+[2026-11-18T13:49:11.929Z] [Canary 50% @ 3s/10s] green: 67 reqs, 0 errors (0.0%)
+[2026-11-18T13:49:12.931Z] [Canary 50% @ 4s/10s] green: 84 reqs, 0 errors (0.0%)
+[2026-11-18T13:49:13.934Z] [Canary 50% @ 5s/10s] green: 103 reqs, 0 errors (0.0%)
+[2026-11-18T13:49:14.936Z] [Canary 50% @ 6s/10s] green: 123 reqs, 0 errors (0.0%)
+[2026-11-18T13:49:15.937Z] [Canary 50% @ 7s/10s] green: 146 reqs, 0 errors (0.0%)
+[2026-11-18T13:49:16.939Z] [Canary 50% @ 8s/10s] green: 170 reqs, 0 errors (0.0%)
+[2026-11-18T13:49:17.941Z] [Canary 50% @ 9s/10s] green: 184 reqs, 0 errors (0.0%)
+[2026-11-18T13:49:18.942Z] [Canary 50% @ 10s/10s] green: 200 reqs, 0 errors (0.0%)
+[2026-11-18T13:49:18.942Z] Canary stage [50%] completed successfully with 0 gate violations.
+[2026-11-18T13:49:18.942Z] Promoting [green] to 100% traffic...
+[2026-11-18T13:49:18.947Z] Final router state: blue=0%, green=100%
+[2026-11-18T13:49:18.947Z] Release of linkbox:v2 completed successfully! Old slot [blue] is left running.
+
+> awad-release-rollback-starter@2.0.0 drill:build
+> node tools/drills/build.js v2
+
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+sha256:5b409584e9025c78c106758a54f62f8db17acd9a2b6f443a17e15a4d3717d635
+
+> awad-release-rollback-starter@2.0.0 release
+> node deploy/release.js v3-bad
+
+[2026-11-18T13:49:37.223Z] ========================================
+[2026-11-18T13:49:37.225Z] Starting release for image linkbox:v3-bad
+[2026-11-18T13:49:37.225Z] ========================================
+[2026-11-18T13:49:37.276Z] Current state: active=[green] (100%), target idle slot=[blue]
+[2026-11-18T13:49:37.276Z] Starting linkbox:v3-bad in service [blue] via docker compose...
+ Container linkbox-blue-1  Recreate
+ Container linkbox-blue-1  Recreated
+ Container linkbox-blue-1  Starting
+ Container linkbox-blue-1  Started
+[2026-11-18T13:49:38.069Z] Waiting for linkbox-blue-1 to report healthy in Docker (max 60s)...
+[2026-11-18T13:49:43.582Z] linkbox-blue-1 reports HEALTHY!
+[2026-11-18T13:49:43.590Z] Applying canary stage: target [blue]=20%, active [green]=80% for 12s...
+[2026-11-18T13:49:44.605Z] [Canary 20% @ 1s/12s] blue: 5 reqs, 2 errors (40.0%)
+
+======================================================
+[2026-11-18T13:49:44.606Z] !!! AUTOMATED CANARY GATE TRIGGERED !!!
+[2026-11-18T13:49:44.606Z] Error threshold exceeded on blue: 2 errors in 5 requests (40.0%).
+[2026-11-18T13:49:44.606Z] Halting release and executing automated rollback...
+======================================================
+
+[2026-11-18T13:49:44.609Z] Draining traffic from bad container linkbox-blue-1 (1s)...
+linkbox-blue-1
+[2026-11-18T13:49:45.811Z] Confirmed router state after auto-rollback: blue=0%, green=100%
+[2026-11-18T13:49:45.812Z] Release failed: Canary gate tripped: 2 errors detected on blue
