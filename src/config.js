@@ -43,7 +43,7 @@ const port = Number(process.env.PORT ?? 3000);
 const dbPath = process.env.DB_PATH ?? (env === 'development' ? './data/app.db' : '/data/app.db');
 const baseUrl = process.env.BASE_URL ?? (env === 'production' ? 'https://links.example.com' : `http://localhost:${port}`);
 const adminToken = process.env.ADMIN_TOKEN ?? (env === 'production' ? '' : 'dev-secret');
-const version = process.env.APP_VERSION ?? '1.0.0';
+const version = process.env.APP_VERSION ?? '2.0.0';
 
 export const config = {
   env,

@@ -1,0 +1,3 @@
+ALTER TABLE links DROP COLUMN expires_at;
+
+DROP TABLE IF EXISTS flags;
