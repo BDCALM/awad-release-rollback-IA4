@@ -13,20 +13,6 @@ Rejected: <what you threw away, and why>
 
 Every AI Log below are summarized briefly.
 
-## Log number - 18/11/2026
-
-**Tool used:** Gemini 3.1 pro
-**Asked for:**
-
-
-**Kept:**
-
-
-**Rejected:**
-
-
-**Changed:**
-
 
 ## Log 1 - 18/11/2026
 
@@ -106,16 +92,15 @@ GET /links/:code và GET /links: Trả về HTTP 200 kèm thuộc tính expiresA
 
 
 
-## Log number - 18/11/2026
+## Log number 5 - 18/11/2026
 
-**Tool used:** Gemini 3.1 pro
-**Asked for:**
+**Tool used:** Gemini 3.8 FLASH high
+**Asked for:** Implement Phase 3: deploy/release.js (npm run release -- <tag>) and deploy/rollback.js (npm run rollback), plus ensure package.json has these npm scripts properly configured. Must pass checks L0–L9 (Health Check First, Canary Stages <= 25% for >= 10s, Automated Canary Gate & Auto-Rollback on > 5% or >= 2 errors, Rollback under 5 mins, zero failed requests outside bad canary).
 
+**Kept:** deploy/release.js, deploy/rollback.js, RELEASE.md
+- deploy/release.js: Health check first waiting for Docker container healthy status before routing traffic; Canary Stage 1 (20% for 12s) and Stage 2 (50% for 10s); Automated Canary Gate polling :8081/state, auto-rolling back immediately if errors >= 2 or error rate > 5%; Promoting to 100% on success and leaving old slot running.
+- deploy/rollback.js: One-command rollback shifting 100% traffic back to safe slot, querying/printing confirmed weights from GET :8081/state, and stopping/cleaning up bad container.
+- RELEASE.md: Comprehensive Step-by-Step matrix, Point of No Return explanation, and Canary Gate mathematical specification.
 
-**Kept:**
-
-
-**Rejected:**
-
-
-**Changed:**
+**Rejected:** Nothing
+**Changed:** Implemented deploy/release.js, deploy/rollback.js, updated RELEASE.md
