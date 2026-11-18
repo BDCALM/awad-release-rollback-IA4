@@ -43,6 +43,20 @@ Rejected: <what you threw away, and why>
 
 **Tool used:** Gemini 3.1 pro
 
+**Asked for:** Give me the roadmap to complete the IA4
+Đây là repository mà tôi đã copy từ template của giáo viên: "https://github.com/BDCALM/awad-release-rollback-IA4"
+
+**Kept:** Kept the "awad-release-rollback-IA4\roadmap.md" file
+
+
+**Rejected:** Nothing
+
+
+**Changed:** Nothing
+
+## Log number - 18/11/2026
+
+**Tool used:** Gemini 3.1 pro
 **Asked for:**
 
 
