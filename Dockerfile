@@ -15,7 +15,7 @@ COPY --chown=node:node migrations/ ./migrations/
 USER node
 
 # Bake application version into the image (default to 1.0.0 if not supplied)
-ARG APP_VERSION=1.0.0
+ARG APP_VERSION=2.0.0
 ENV APP_VERSION=${APP_VERSION}
 
 # Expose service ports (3000 for internal app, 8080 for ingress/traffic)
